@@ -94,7 +94,7 @@ const colorSchemes = [
  {
   name: 'C-64',
   // http://unusedino.de/ec64/technical/misc/vic656x/colors/
-  description: 'As caclulated by Pepto'
+  description: 'As caclulated by Pepto',
   colors: [
     '#68372B',
     '#70A4B2',
