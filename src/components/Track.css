@@ -1,0 +1,28 @@
+.track-info {
+  color: #d4c6b6;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.track.muted {
+  opacity: 0.1;
+}
+
+.track input[type='checkbox'] {
+  width: 1em;
+  height: 1em;
+  margin-inline-end: 2px;
+  border-radius: 0;
+}
+
+.track input[type='checkbox']:focus {
+  background-color: initial;
+}
+
+.track input[type='checkbox'].onstep {
+  border-color: #ffa5005d;
+}
+
+.track.muted input[type='checkbox'].onstep {
+  background-color: black;
+}

@@ -1,0 +1,161 @@
+:root {
+  --pico-icon-checkbox: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(255, 255, 255)' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3C/svg%3E");
+  --color-1: #221616;
+  --color-2: #fffaf2;
+  --color-3: #d93934;
+  --color-4: #808000;
+  --color-5: #ed872d;
+  --color-6: #556CBC;
+  --color-7: #10EDF5;
+  --color-8: #F99FD4;
+  --color-9: #6b6361;
+}
+
+[data-theme=dark] {
+  --pico-background-color: #21343d;
+}
+
+body {
+  font-family: Menu;
+  font-size: 23px;
+  line-height: 22px;
+}
+
+.color-1 {
+  background-color: var(--color-1);
+  border-color: var(--color-1);
+}
+.color-2 {
+  background-color: var(--color-2);
+  border-color: var(--color-2);
+}
+.color-3 {
+  background-color: var(--color-3);
+  border-color: var(--color-3);
+}
+.color-4 {
+  background-color: var(--color-4);
+  border-color: var(--color-4);
+}
+.color-5 {
+  background-color: var(--color-5);
+  border-color: var(--color-5);
+}
+.color-6 {
+  background-color: var(--color-6);
+  border-color: var(--color-6);
+}
+.color-7 {
+  background-color: var(--color-7);
+  border-color: var(--color-7);
+}
+.color-8 {
+  background-color: var(--color-8);
+  border-color: var(--color-8);
+}
+.color-9 {
+  background-color: var(--color-9);
+  border-color: var(--color-9);
+}
+
+.container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 0.4fr 9.6fr;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1010px;
+  }
+}
+
+.container .header {
+  text-decoration: underline;
+  margin-bottom: 12px;
+}
+
+.container .header button.palette {
+  border-radius: 0;
+  margin-top: 2px;
+  width: 14px;
+  height: 18px;
+  display: inline-block;
+}
+
+.container .header button.palette.active {
+  border-color: #693;
+}
+
+[data-tooltip]::before {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.toolbar {
+  position: relative;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 8px;
+}
+
+.toolbar button,
+.toolbar input,
+.toolbar select {
+  padding: 10px;
+  font-size: 32px;
+  line-height: 30px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px black;
+}
+
+@media (max-width: 800px) {
+  .toolbar button,
+  .toolbar input,
+  .toolbar select {
+    padding: 8px;
+    font-size: 20px;
+    line-height: 18px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 500px) {
+  .toolbar button,
+  .toolbar input,
+  .toolbar select {
+    padding: 8px;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px black;
+  }
+}
+
+@font-face {
+  font-family: 'Botic';
+  src:
+    local('Botic'),
+    url('/fonts/pixeldroidBoticRegular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Console';
+  src:
+    local('Console'),
+    url('/fonts/pixeldroidConsoleRegular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Menu';
+  src:
+    local('Menu'),
+    url('/fonts/pixeldroidMenuRegular.otf') format('opentype');
+}

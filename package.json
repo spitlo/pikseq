@@ -1,0 +1,28 @@
+{
+  "name": "pikseq",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "vite build --base=/pikseq/",
+    "format": "prettier . --write",
+    "serve": "yarn build && vite preview --base=/pikseq/",
+    "start": "vite",
+    "testbuild": "vite build --base=/pikseq/ --outDir=./tmp/testbuild"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33",
+    "prettier": "3.2.5",
+    "solid-devtools": "^0.29.2",
+    "vite": "^5.0.11",
+    "vite-plugin-solid": "^2.8.2"
+  },
+  "dependencies": {
+    "@solid-primitives/clipboard": "^1.5.10",
+    "@solid-primitives/keyboard": "^1.2.7",
+    "solid-js": "^1.8.11",
+    "tone": "^14.7.77"
+  }
+}
