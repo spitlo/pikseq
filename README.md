@@ -13,7 +13,7 @@ PIKSEQ is some sort of sibling to [Space](https://spitlo.com/space/) and [/'siː
 ## To do
 
 - [ ] Styling
-- [ ] Add ability to change color scheme
+- [x] Add ability to change color scheme
 
 ## Sources
 
