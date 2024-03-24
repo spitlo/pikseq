@@ -3,6 +3,7 @@ import { actions } from './store'
 const colorSchemes = [
  {
   name: 'Standard',
+  description: 'The default PIKSEQ palette',
   colors: [
     '#221616',
     '#fffaf2',
@@ -17,6 +18,7 @@ const colorSchemes = [
  },
  {
   name: 'Basic',
+  description: 'The basic colors as CSS sees them',
   colors: [
     'black',
     'white',
@@ -31,6 +33,7 @@ const colorSchemes = [
  },
  {
   name: 'Sunset',
+  description: 'A cozy sunset palette',
   colors: [
     '#00202e',
     '#003f5c',
@@ -45,6 +48,7 @@ const colorSchemes = [
  },
  {
   name: '9 shades',
+  description: 'As gray as they get',
   colors: [
     '#161618',
     '#353537',
@@ -59,6 +63,7 @@ const colorSchemes = [
  },
  {
   name: 'The Blues',
+  description: 'A simple blue scale',
   colors: [
     '#0d1822',
     '#1b3146',
@@ -73,6 +78,7 @@ const colorSchemes = [
  },
  {
   name: 'PICO-4',
+  description: 'Half the palette, twice the fun!',
   colors: [
     '#1D2B53',
     '#7E2553',
@@ -84,7 +90,23 @@ const colorSchemes = [
     '#29ADFF',
     '#FF77A8',
   ],
- }
+ },
+ {
+  name: 'C-64',
+  // http://unusedino.de/ec64/technical/misc/vic656x/colors/
+  description: 'As caclulated by Pepto'
+  colors: [
+    '#68372B',
+    '#70A4B2',
+    '#6F3D86',
+    '#588D43',
+    '#352879',
+    '#B8C76F',
+    '#6F4F25',
+    '#433900',
+    '#9A6759',
+  ],
+ },
 ]
 
 const setColorScheme = (scheme) => {
