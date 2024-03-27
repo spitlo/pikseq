@@ -60,6 +60,8 @@ const Help = () => {
         Save works OK but I wouldn’t trust it with my life. It saves the current
         state of your composition in the URL, just copy it from the address bar
         to share it.
+
+        If you get no sound when you press PLAY, try hitting SAVE and reloading your browser.
       </p>
       {/*
       <p>
