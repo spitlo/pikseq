@@ -155,7 +155,7 @@ const handleTickClick = (trackId, tickId, color, keys) => {
     let counter = 0
     // Loop until we reach a stop on bothe sides
     while (togglePrev || toggleNext) {
-      counter = counter + stepSize
+      counter++
       if (tickId - counter < 0) {
         togglePrev = false
       }
@@ -163,17 +163,21 @@ const handleTickClick = (trackId, tickId, color, keys) => {
         toggleNext = false
       }
       if (togglePrev) {
-        let prevTick = store.tracks[trackId].ticks[tickId - counter]
+        let prevTick = store.frames[store.frame][trackId].ticks[tickId - counter]
         if (prevTick === baseColor) {
-          toggleTick(trackId, tickId - counter, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId, tickId - counter, color)
+          }
         } else {
           togglePrev = false
         }
       }
       if (toggleNext) {
-        let nextTick = store.tracks[trackId].ticks[tickId + counter]
+        let nextTick = store.frames[store.frame][trackId].ticks[tickId + counter]
         if (nextTick === baseColor) {
-          toggleTick(trackId, tickId + counter, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId, tickId + counter, color)
+          }
         } else {
           toggleNext = false
         }
@@ -185,25 +189,29 @@ const handleTickClick = (trackId, tickId, color, keys) => {
     let toggleNext = true
     let counter = 0
     while (togglePrev || toggleNext) {
-      counter = counter + stepSize
+      counter++
       if (trackId - counter < 0) {
         togglePrev = false
       }
-      if (trackId + counter === store.tracks.length) {
+      if (trackId + counter === store.frames[store.frame].length) {
         toggleNext = false
       }
       if (togglePrev) {
-        let prevTick = store.tracks[trackId - counter].ticks[tickId]
+        let prevTick = store.frames[store.frame][trackId - counter].ticks[tickId]
         if (prevTick === baseColor) {
-          toggleTick(trackId - counter, tickId, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId - counter, tickId, color)
+          }
         } else {
           togglePrev = false
         }
       }
       if (toggleNext) {
-        let nextTick = store.tracks[trackId + counter].ticks[tickId]
+        let nextTick = store.frames[store.frame][trackId + counter].ticks[tickId]
         if (nextTick === baseColor) {
-          toggleTick(trackId + counter, tickId, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId + counter, tickId, color)
+          }
         } else {
           toggleNext = false
         }
