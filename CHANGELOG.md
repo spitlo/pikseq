@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.1.0
+
+- Fix handleTickClick function [`c724f1b`](../../commit/c724f1bb9453232ce425a0cea47331639c20a647)
+- WIP Frames [`4d57a6e`](../../commit/4d57a6edf15a745e0fb56b2b11f881d87c2e27a8)
+
 ## v0.0.6
 
 - Add To do item about animation [`1761f01`](../../commit/1761f017768704c0284fd9acd4e791a552d69d81)
