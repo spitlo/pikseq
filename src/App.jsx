@@ -42,11 +42,11 @@ function App() {
       } else if (charCode > 48 && charCode < 58) {
         // Numbers 1-9. Change current color
         setStore('currentColor', Number(e.key))
-      } else if (e.key === 'ArrowUp') {
+      } else if (charCode === 45) {
         // This triggers an infinite loop, investigate
-        // actions.setBpm(store.bpm + 1)
-      } else if (e.key === 'ArrowDown') {
-        // actions.setBpm(store.bpm - 1)
+        // actions.prevColor()
+      } else if (charCode === 43) {
+        // actions.nextColor()
       }
     }
   })

@@ -82,6 +82,16 @@ const loop = (time) => {
   index++
 }
 
+const prevColor = () => {
+  let currentColor = store.currentColor
+  if (currentColor < 2) {
+    currentColor = 9
+  } else {
+    currentColor--
+  }
+  setStore('currentColor', currentColor)
+}
+
 const nextColor = () => {
   let currentColor = store.currentColor
   if (currentColor > 8) {
@@ -248,6 +258,7 @@ const actions = {
   initAndPlay,
   initContext,
   nextColor,
+  prevColor,
   reset,
   saveStore,
   setBpm,
