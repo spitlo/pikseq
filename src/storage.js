@@ -12,6 +12,7 @@ const load = () => {
       // Update old saves to work with frames
       tempStorage.frames = [tempStorage.tracks]
       delete tempStorage.tracks
+      tempStorage.animate = false
     }
     storage = tempStorage
     debug('In load: Storage is now', storage)
