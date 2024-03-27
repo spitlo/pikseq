@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.2
+
+- Add help text about animation [`7c7bebc`](../../commit/7c7bebce4015571283e0201bbecdf21f00e365d9)
+
 ## v0.1.1
 
 - Set animate to false when converting old saves [`8e34308`](../../commit/8e34308f24fefc87e34dcb8a78729c44b50caad3)
