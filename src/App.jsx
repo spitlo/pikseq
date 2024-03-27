@@ -32,6 +32,7 @@ function App() {
   const [SaveModal, toggleSaveModal] = createModal()
 
   createEffect(() => {
+    console.log(store); /* eslint-disable-line */
     const e = kdEvent()
     if (e && e.key) {
       const charCode = e.key.charCodeAt()
@@ -48,6 +49,7 @@ function App() {
       } else if (charCode === 43) {
         // actions.nextColor()
       }
+      // e.preventDefault()
     }
   })
 
@@ -71,9 +73,18 @@ function App() {
                 />
             )}
           </For>
+          <button class="animation" disabled={store.playing || store.frame === 0} onClick={actions.prevFrame}>{'<'}</button>
+          <span class="animation-indicator">Frame {store.frame + 1}</span>
+          <button class="animation" disabled={store.playing || store.frame === store.frames.length - 1} onClick={actions.nextFrame}>{'>'}</button>
+          <button class="animation" disabled={store.frames.length > 7} onClick={actions.addFrame}>{'+'}</button>
+          <label class="animation-animate">
+            <input type="checkbox" disabled={store.frames.length === 1} checked={store.animate} onClick={() => {
+              setStore('animate', !store.animate)
+            }} /> Animate
+          </label>
         </div>
 
-        <For each={store.tracks}>
+        <For each={store.frames[store.frame]}>
           {(track, trackIndex) => {
             const { id, ticks } = track
             return (
@@ -119,7 +130,7 @@ function App() {
           </button>
           <button
             onClick={actions.initAndPlay}
-            disabled={store.playing || store.tracks.length === 1}
+            disabled={store.playing}
           >
             Play
           </button>
@@ -132,7 +143,7 @@ function App() {
               actions.setBpm(e.target.value)
             }}
           />
-          <button onClick={actions.reset} disabled={store.tracks.length === 1}>
+          <button onClick={actions.reset}>
             Reset
           </button>
           <button onClick={actions.nextColor} class={`color-button color-${store.currentColor}`}>Color</button>

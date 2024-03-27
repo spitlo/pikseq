@@ -7,7 +7,13 @@ const load = () => {
     const hash = location.hash.slice(1)
     const escaped = atob(hash)
     const unescaped = unescape(escaped)
-    storage = JSON.parse(unescaped)
+    const tempStorage = JSON.parse(unescaped)
+    if (tempStorage.tracks) {
+      // Update old saves to work with frames
+      tempStorage.frames = [tempStorage.tracks]
+      delete tempStorage.tracks
+    }
+    storage = tempStorage
     debug('In load: Storage is now', storage)
   }
 }

@@ -14,31 +14,40 @@ import {
 const BASE_SCALE = ['E', 'F#', 'G#', 'A', 'B', 'C', 'D'] // Aeolian Dominant scale
 const INSTRUMENT_AMOUNT = instruments.length
 const TRACK_LENGTH = 32
+
 const initialnstrument = getRandomInt(0, instruments.length - 1)
 
 let index = 0
 
-const tracks = []
-for (let id=0; id < 26; id++) {
-  tracks.push({
-      id,
-      instrument: initialnstrument,
-      muted: false,
-      note: getArrayElement(BASE_SCALE),
-      ticks: new Array(TRACK_LENGTH).fill(0),
-  })
+const generateTtracks = () => {
+  const tracks = []
+  for (let id=0; id < 26; id++) {
+    tracks.push({
+        id,
+        muted: false,
+        // Should we keep this like it is? Or do we want consistent
+        // notes across frames?
+        note: getArrayElement(BASE_SCALE),
+        ticks: new Array(TRACK_LENGTH).fill(0),
+    })
+  }
+  return tracks
 }
 
 const [store, setStore] = createStore({
+  animate: false,
   bpm: 85,
   colorScheme: 0,
   createdWith: version,
   currentColor: 1,
+  frame: 0,
+  frames: [
+    generateTtracks(),
+  ],
   initiated: false,
   playing: false,
   saved: true,
   steps: new Array(TRACK_LENGTH).fill(0),
-  tracks,
 })
 
 const initContext = () => {
@@ -46,9 +55,9 @@ const initContext = () => {
 }
 
 const loop = (time) => {
-  for (let trackId = 0; trackId < store.tracks.length; trackId++) {
+  for (let trackId = 0; trackId < store.frames[store.frame].length; trackId++) {
     let step = index % 32
-    const currentTrack = store.tracks[trackId]
+    const currentTrack = store.frames[store.frame][trackId]
     if (!currentTrack.muted) {
       if (currentTrack.ticks[step]) {
         const instrumentId = currentTrack.ticks[step]
@@ -79,6 +88,16 @@ const loop = (time) => {
     }, time)
   }
 
+  if (store.animate) {
+    if (index % 2 === 0) {
+      let nextFrame = store.frame + 1
+      if (nextFrame > store.frames.length - 1) {
+        nextFrame = 0
+      }
+      setStore('frame', nextFrame)
+    }
+  }
+
   index++
 }
 
@@ -104,13 +123,13 @@ const nextColor = () => {
 
 const toggleTick = async (trackId, tickId, color) => {
   setStore(
-    'tracks',
-    (tracks) => tracks.id === trackId,
-    produce((track) => {
-      if (track.ticks[tickId] === color) {
-        track.ticks[tickId] = 0
+    'frames',
+    store.frame,
+    produce((frame) => {
+      if (frame[trackId].ticks[tickId] === color) {
+        frame[trackId].ticks[tickId] = 0
       } else {
-        track.ticks[tickId] = color
+        frame[trackId].ticks[tickId] = color
       }
     })
   )
@@ -118,7 +137,7 @@ const toggleTick = async (trackId, tickId, color) => {
 
 const handleTickClick = (trackId, tickId, color, keys) => {
   // First, pick the color of the clicked tick
-  const baseColor = store.tracks[trackId].ticks[tickId]
+  const baseColor = store.frames[store.frame][trackId].ticks[tickId]
   // Then toggle the clicked tick
   toggleTick(trackId, tickId, color)
 
@@ -253,12 +272,38 @@ const reset = () => {
   location.href = '.'
 }
 
+const prevFrame = () => {
+  setStore('frame', store.frame - 1)
+}
+
+const nextFrame = () => {
+  setStore('frame', store.frame + 1)
+}
+
+const addFrame = () => {
+  // If this is the first added frame, enable animation
+  if (store.frames.length === 1) {
+    setStore('animate', true)
+  }
+  if (store.frames.length < 8) {
+    setStore(
+      produce((store) => {
+        store.frames.push(generateTtracks())
+        store.frame = store.frame + 1
+      })
+    )
+  }
+}
+
 const actions = {
+  addFrame,
   handleTickClick,
   initAndPlay,
   initContext,
   nextColor,
+  nextFrame,
   prevColor,
+  prevFrame,
   reset,
   saveStore,
   setBpm,
