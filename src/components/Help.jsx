@@ -60,22 +60,10 @@ const Help = () => {
         Save works OK but I wouldn’t trust it with my life. It saves the current
         state of your composition in the URL, just copy it from the address bar
         to share it.
-
+      </p>
+      <p>
         If you get no sound when you press PLAY, try hitting SAVE and reloading your browser.
       </p>
-      {/*
-      <p>
-        1: Kick
-        2: Snare
-        3: Hi-hat
-        4: Synth 2
-        5: Pluck 2
-        6: Duo 1
-        7: Sampler 1
-        8: Mono 2
-        9: Fun 2
-      </p>
-      */}
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
         <p class="warning">
