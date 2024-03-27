@@ -13,6 +13,7 @@ PIKSEQ is some sort of sibling to [Space](https://spitlo.com/space/) and [/'siː
 ## To do
 
 - [ ] Styling
+- [ ] Create multiple frames and animate the image?
 - [x] Add ability to change color scheme
 
 ## Sources
