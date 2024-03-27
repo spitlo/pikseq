@@ -206,26 +206,30 @@ const setBpm = (newBpm) => {
   )
 }
 
-const saveStore = async () => {
-  await Tone.Transport.stop()
-  const steps = new Array(store.steps.length).fill(0)
+const resetSteps = () => {
+  const steps = new Array(TRACK_LENGTH).fill(0)
+  setStore('steps', steps)
+}
+
+const saveStore = () => {
+  Tone.Transport.stop()
+  resetSteps()
   setStore(
     produce((store) => {
       store.initiated = false
       store.playing = false
       store.saved = true
-      store.steps = steps
     })
   )
   stash(store)
   save()
 }
 
-const initAndPlay = async () => {
-  await Tone.start()
+const initAndPlay = () => {
+  Tone.start()
   Tone.Transport.bpm.value = store.bpm
   Tone.Transport.scheduleRepeat(loop, '16n')
-  await Tone.Transport.start()
+  Tone.Transport.start()
 
   setStore(
     produce((store) => {
@@ -233,6 +237,23 @@ const initAndPlay = async () => {
       store.playing = true
     })
   )
+}
+
+const togglePlay = () => {
+  if (store.playing) {
+    Tone.Transport.stop()
+    index = 0
+    resetSteps()
+    setStore('playing', false)
+  } else {
+    resetSteps()
+    if (store.initiated) {
+      Tone.Transport.start()
+      setStore('playing', true)
+    } else {
+      initAndPlay()
+    }
+  }
 }
 
 const setColorScheme = (scheme) => {
@@ -253,6 +274,7 @@ const actions = {
   setBpm,
   setColorScheme,
   toggleMute,
+  togglePlay,
 }
 
 export { TRACK_LENGTH, actions, loop, setStore, store }

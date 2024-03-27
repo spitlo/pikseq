@@ -118,10 +118,9 @@ function App() {
             Save
           </button>
           <button
-            onClick={actions.initAndPlay}
-            disabled={store.playing || store.tracks.length === 1}
+            onClick={actions.togglePlay}
           >
-            Play
+            {store.playing ? 'Stop' : 'Play'}
           </button>
           <input
             disabled
