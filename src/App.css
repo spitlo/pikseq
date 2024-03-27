@@ -12,7 +12,7 @@
 }
 
 [data-theme=dark] {
-  --pico-background-color: #21343d;
+  --pico-background-color: #2f414a;
 }
 
 body {
@@ -21,6 +21,10 @@ body {
   line-height: 22px;
 }
 
+.color-0 {
+  background-color: #1b272ddf;
+  border-color: #2f414a;
+}
 .color-1 {
   background-color: var(--color-1);
   border-color: var(--color-1);
@@ -63,7 +67,7 @@ body {
   display: grid;
   grid-template-columns: 0.4fr 9.6fr;
   grid-column-gap: 0;
-  grid-row-gap: 0;
+  grid-row-gap: 2px;
   justify-items: stretch;
   align-items: stretch;
 }

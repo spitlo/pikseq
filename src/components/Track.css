@@ -19,10 +19,11 @@
 }
 
 .track input[type='checkbox'] {
-  width: 1em;
-  height: 1em;
-  margin-inline-end: 2px;
+  width: 1.2em;
+  height: 1.2em;
+  margin-inline-end: 4px;
   border-radius: 0;
+/*  border-color: #2f414a;*/
 }
 
 .track input[type='checkbox']:focus {
