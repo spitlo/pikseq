@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.5
+
+- Try slightly larger grid and lighter background [`c55fd5a`](../../commit/c55fd5a897a1cd8211133ac8eabbff34ee582037)
+
 ## v0.0.4
 
 - Highlight note when hovering related track [`2c746ab`](../../commit/2c746ab9bd7ef2a9b21535cd591a7ff9de6430f9)
