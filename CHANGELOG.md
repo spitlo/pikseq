@@ -2,6 +2,13 @@
 
 This changelog is automatically generated.
 
+## v0.0.6
+
+- Add To do item about animation [`1761f01`](../../commit/1761f017768704c0284fd9acd4e791a552d69d81)
+- WIP: Color cycling not working [`084966e`](../../commit/084966e0dc91046c55be418cabe07fab115a9c69)
+- Show muta letter for each track. Strike out chord for muted tracks [`2f0f789`](../../commit/2f0f78968fb643c6b3a443134595d4336d8659bd)
+- Clean up Help component [`e814a9d`](../../commit/e814a9d4082ddc858791f1793a3314892cdbbc18)
+
 ## v0.0.5
 
 - Try slightly larger grid and lighter background [`c55fd5a`](../../commit/c55fd5a897a1cd8211133ac8eabbff34ee582037)
