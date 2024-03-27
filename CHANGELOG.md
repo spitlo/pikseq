@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.1
+
+- Set animate to false when converting old saves [`8e34308`](../../commit/8e34308f24fefc87e34dcb8a78729c44b50caad3)
+
 ## v0.1.0
 
 - Fix handleTickClick function [`c724f1b`](../../commit/c724f1bb9453232ce425a0cea47331639c20a647)
