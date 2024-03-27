@@ -2,6 +2,16 @@
   color: #d4c6b6;
   text-transform: uppercase;
   cursor: pointer;
+  padding-left: 2px;
+  margin-right: 4px;
+}
+
+/*
+  Make it stand out when we hover the related track for
+  anal retentives who want to set specific notes.
+*/
+.track-info:has(+ .track:hover) {
+  background-color: green;
 }
 
 .track.muted {
