@@ -64,6 +64,12 @@ const Help = () => {
       <p>
         If you get no sound when you press PLAY, try hitting SAVE and reloading your browser.
       </p>
+      <p>
+        If you want to, you can create multiple frames, which you can then animate between.
+        Get started by clicking the <code>+</code> button on the Frames toolbar next to the color buttons.
+        You could also use frames for song parts: Disable animation by clicking the checkbox and
+        switch between frames manually by using the arrow buttons.
+      </p>
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
         <p class="warning">

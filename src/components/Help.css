@@ -4,6 +4,7 @@
   border-radius: 1rem;
   background-color: rgba(1, 1, 1, 0.3);
   color: #779;
+  line-height: 28px;
 }
 
 .help h1 {
@@ -15,6 +16,8 @@
 .help code {
   font-family: Menu;
   font-size: 24px;
+  padding: 4px 8px;
+  margin: 0 4px;
 }
 
 .warning {
