@@ -1,4 +1,5 @@
 .track-info {
+  position: relative;
   color: #d4c6b6;
   text-transform: uppercase;
   cursor: pointer;
@@ -15,7 +16,17 @@
 }
 
 .track.muted {
-  opacity: 0.1;
+  opacity: 0.3;
+}
+.track-info:has(+ .track.muted):after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 2px solid var(--pico-primary);
+  height: 54%;
+  width: 50%;
+  transform: rotateZ(-5deg);
 }
 
 .track input[type='checkbox'] {
@@ -34,6 +45,12 @@
   border-color: #ffa5005d;
 }
 
-.track.muted input[type='checkbox'].onstep {
-  background-color: black;
+.track-letter {
+  padding: 0 6px 2px 4px;
+  color: #d4c6b630;
+  text-transform: uppercase;
+}
+
+.track:hover .track-letter {
+  background-color: #3f545ee0;
 }

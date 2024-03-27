@@ -20,7 +20,10 @@ const Track = (props) => {
       >
         <span>{track.note}</span>
       </div>
-      <div class={props.class}>{props.children}</div>
+      <div class={props.class}>
+        {props.children}
+        <span class="track-letter">{trackLetter}</span>
+      </div>
     </>
   )
 }
