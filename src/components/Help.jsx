@@ -45,20 +45,25 @@ const Help = () => {
       <details open>
         <summary>Painting</summary>
         <p>
-          Pick a color by clicking the color button or pressing keys
-          <code>1</code>-<code>9</code>. Then start painting! You can only paint
-          by clicking a pixel at a time, sorry :(
+          Pick a color by clicking the colored squares in the top toolbar or
+          pressing keys <code>1</code>-<code>9</code>. Then start painting! You
+          can only paint by clicking a pixel at a time, sorry{' '}
+          <i class="emoticon sad" />
         </p>
         <p>
-          To help you, there are some keyboard modifiers. If you press
-          <code>alt</code>/<code>option</code> while painting a pixel, you will
-          get a horizontal line. If you press <code>shift</code> while painting
-          a pixel, you will get a vertical line. Lines extend through all pixels
-          of the same color, so you can put a start and end pixel and the line
-          will cover the area between them. If you hold down{' '}
-          <code>windows</code>/<code>command</code>/<code>meta</code> aswell
-          (depending on your OS) while paint a line, the line will only paint
-          every other pixel.
+          But to help you paint faster, there are some keyboard modifiers. If
+          you press <code>alt</code>/<code>option</code> while painting a pixel,
+          you will get a horizontal line. If you press <code>shift</code> while
+          painting a pixel, you will get a vertical line. Lines extend through
+          all pixels of the same color, so you can put a start and end pixel and
+          the line will cover the area between them. If you hold down
+          <code>windows</code>/<code>command</code>/<code>meta</code> (depending
+          on your OS) as well while paint a line, the line will only paint every
+          other pixel.
+        </p>
+        <p>
+          You can also cycle through colors by pressing the COLOR button or
+          hitting keys <code>-</code> or <code>+</code>
         </p>
       </details>
 
@@ -95,7 +100,7 @@ const Help = () => {
         <p>
           You could also use frames for song parts: Disable animation by
           clicking the checkbox and switch between frames manually by using the
-          arrow buttons.
+          arrow buttons och hitting keys <code>,</code> or <code>.</code>.
         </p>
         <p>
           When using frames, be aware that the note for a specific track changes
@@ -129,18 +134,33 @@ const Help = () => {
         </p>
         <p>
           For now, do what I do: Save, then reload you browser. This also
-          encourages you to save often, so... you’re welcome!
+          encourages you to save often, so... you’re welcome!{' '}
+          <i class="emoticon nerd" />
         </p>
       </details>
 
       <hr />
+
+      <details>
+        <summary>Credits</summary>
+        <p>
+          Icons from{' '}
+          <a
+            href="https://emoji.serenityos.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            SerenityOS
+          </a>
+        </p>
+      </details>
 
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
         <p class="warning">
           The current composition is saved with version {createdWith}. PIKSEQ is
           running version {version}. Some sounds may not represent what the
-          original composer intended.
+          original composer intended. <i class="emoticon scream" />
         </p>
       </Show>
     </div>

@@ -1,5 +1,5 @@
 import * as Tone from 'tone'
-import { createEffect } from 'solid-js'
+import { createEffect, untrack } from 'solid-js'
 import { createStore, produce, unwrap } from 'solid-js/store'
 
 import instruments from './instruments'
@@ -54,6 +54,7 @@ const initContext = () => {
 }
 
 const loop = (time) => {
+  console.log(time, index) /* eslint-disable-line */
   for (let trackId = 0; trackId < store.frames[store.frame].length; trackId++) {
     let step = index % 32
     const currentTrack = store.frames[store.frame][trackId]
@@ -100,7 +101,7 @@ const loop = (time) => {
 }
 
 const prevColor = () => {
-  let currentColor = store.currentColor
+  let currentColor = untrack(() => store.currentColor)
   if (currentColor < 2) {
     currentColor = 9
   } else {
@@ -110,7 +111,7 @@ const prevColor = () => {
 }
 
 const nextColor = () => {
-  let currentColor = store.currentColor
+  let currentColor = untrack(() => store.currentColor)
   if (currentColor > 8) {
     currentColor = 1
   } else {
@@ -258,6 +259,7 @@ const saveStore = () => {
       store.initiated = false
       store.playing = false
       store.saved = true
+      store.createdWith = version
     })
   )
   stash(store)
@@ -280,16 +282,18 @@ const initAndPlay = () => {
 
 const togglePlay = () => {
   if (store.playing) {
-    Tone.Draw.cancel()
-    Tone.Transport.stop()
+    // Tone.Draw.cancel()
     Tone.Transport.clear(transport)
-    index = 0
-    resetSteps()
+    // Tone.Transport.cancel(Tone.now())
+    Tone.Transport.stop()
+    // Tone.Transport.ticks = 0
+    // index = 0
+    // resetSteps()
     setStore('playing', false)
   } else {
     resetSteps()
     if (store.initiated) {
-      transport = Tone.Transport.scheduleRepeat(loop, '16n')
+      // transport = Tone.Transport.scheduleRepeat(loop, '16n')
       Tone.Transport.start()
       setStore('playing', true)
     } else {
@@ -307,11 +311,21 @@ const reset = () => {
 }
 
 const prevFrame = () => {
-  setStore('frame', store.frame - 1)
+  let frame = untrack(() => store.frame) - 1
+  const frames = untrack(() => store.frames)
+  if (frame < 0) {
+    frame = frames.length - 1
+  }
+  setStore('frame', frame)
 }
 
 const nextFrame = () => {
-  setStore('frame', store.frame + 1)
+  let frame = untrack(() => store.frame) + 1
+  const frames = untrack(() => store.frames)
+  if (frame > frames.length - 1) {
+    frame = 0
+  }
+  setStore('frame', frame)
 }
 
 const addFrame = () => {

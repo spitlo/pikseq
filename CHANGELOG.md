@@ -2,6 +2,23 @@
 
 This changelog is automatically generated.
 
+## v0.1.8
+
+- Update version on save. Improve help text [`f9c0f0f`](../../commit/f9c0f0f185fc7e6f171bd514678bd669d956bf6a)
+
+## v0.1.7
+
+- Add emoticons [`1ea96f0`](../../commit/1ea96f0ee3e164575cc5e19d730b403d2e7b1c45)
+
+## v0.1.6
+
+- Only disable frame nav buttons if animation is enabled [`1ec3b76`](../../commit/1ec3b767ba75ef9617d736a613197a4f63388b87)
+- Fix keyboard navigation of colors and frames. Document it [`1c44a5c`](../../commit/1c44a5c764eada8ca3db3016ad20a639dcc29867)
+
+## v0.1.5
+
+- Add Help section about stopping [`a3ecba0`](../../commit/a3ecba0918889561f5ce9fdadb7cf93f56ff69d3)
+
 ## v0.1.4
 
 - Put help text in sections, hide all except the first [`bff5d27`](../../commit/bff5d274388dda6ce04a39c1cba2d88c83c0241b)

@@ -32,7 +32,7 @@ function App() {
   const [SaveModal, toggleSaveModal] = createModal()
 
   createEffect(() => {
-    console.log(store) /* eslint-disable-line */
+    // console.log(store) /* eslint-disable-line */
     const e = kdEvent()
     if (e && e.key) {
       const charCode = e.key.charCodeAt()
@@ -44,12 +44,19 @@ function App() {
         // Numbers 1-9. Change current color
         setStore('currentColor', Number(e.key))
       } else if (charCode === 45) {
-        // This triggers an infinite loop, investigate
-        // actions.prevColor()
+        // -
+        actions.prevColor()
       } else if (charCode === 43) {
-        // actions.nextColor()
+        // +
+        actions.nextColor()
+      } else if (charCode === 44) {
+        // ,
+        actions.prevFrame()
+      } else if (charCode === 46) {
+        // .
+        actions.nextFrame()
       }
-      // e.preventDefault()
+      e.preventDefault()
     }
   })
 
@@ -75,7 +82,7 @@ function App() {
           </For>
           <button
             class="animation"
-            disabled={store.playing || store.frame === 0}
+            disabled={(store.playing && store.animate) || store.frame === 0}
             onClick={actions.prevFrame}
           >
             {'<'}
@@ -83,7 +90,10 @@ function App() {
           <span class="animation-indicator">Frame {store.frame + 1}</span>
           <button
             class="animation"
-            disabled={store.playing || store.frame === store.frames.length - 1}
+            disabled={
+              (store.playing && store.animate) ||
+              store.frame === store.frames.length - 1
+            }
             onClick={actions.nextFrame}
           >
             {'>'}
