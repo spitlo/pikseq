@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.1.6
+
+- Only disable frame nav buttons if animation is enabled [`1ec3b76`](../../commit/1ec3b767ba75ef9617d736a613197a4f63388b87)
+- Fix keyboard navigation of colors and frames. Document it [`1c44a5c`](../../commit/1c44a5c764eada8ca3db3016ad20a639dcc29867)
+
 ## v0.1.5
 
 - Add Help section about stopping [`a3ecba0`](../../commit/a3ecba0918889561f5ce9fdadb7cf93f56ff69d3)
