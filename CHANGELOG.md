@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.8
+
+- Update version on save. Improve help text [`f9c0f0f`](../../commit/f9c0f0f185fc7e6f171bd514678bd669d956bf6a)
+
 ## v0.1.7
 
 - Add emoticons [`1ea96f0`](../../commit/1ea96f0ee3e164575cc5e19d730b403d2e7b1c45)
