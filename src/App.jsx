@@ -82,7 +82,7 @@ function App() {
           </For>
           <button
             class="animation"
-            disabled={store.playing || store.frame === 0}
+            disabled={(store.playing && store.animate) || store.frame === 0}
             onClick={actions.prevFrame}
           >
             {'<'}
@@ -90,7 +90,10 @@ function App() {
           <span class="animation-indicator">Frame {store.frame + 1}</span>
           <button
             class="animation"
-            disabled={store.playing || store.frame === store.frames.length - 1}
+            disabled={
+              (store.playing && store.animate) ||
+              store.frame === store.frames.length - 1
+            }
             onClick={actions.nextFrame}
           >
             {'>'}
