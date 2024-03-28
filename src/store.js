@@ -254,6 +254,7 @@ const saveStore = async () => {
       store.playing = false
       store.saved = true
       store.steps = steps
+      store.createdWith = version
     })
   )
   stash(store)

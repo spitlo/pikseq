@@ -51,19 +51,19 @@ const Help = () => {
           <i class="emoticon sad" />
         </p>
         <p>
-          You can also cycle through colors by pressing the COLOR button or
-          hitting keys <code>-</code> or <code>+</code>
-        </p>
-        <p>
-          To help you, there are some keyboard modifiers. If you press
-          <code>alt</code>/<code>option</code> while painting a pixel, you will
-          get a horizontal line. If you press <code>shift</code> while painting
-          a pixel, you will get a vertical line. Lines extend through all pixels
-          of the same color, so you can put a start and end pixel and the line
-          will cover the area between them. If you hold down
+          But to help you paint faster, there are some keyboard modifiers. If
+          you press <code>alt</code>/<code>option</code> while painting a pixel,
+          you will get a horizontal line. If you press <code>shift</code> while
+          painting a pixel, you will get a vertical line. Lines extend through
+          all pixels of the same color, so you can put a start and end pixel and
+          the line will cover the area between them. If you hold down
           <code>windows</code>/<code>command</code>/<code>meta</code> (depending
           on your OS) as well while paint a line, the line will only paint every
           other pixel.
+        </p>
+        <p>
+          You can also cycle through colors by pressing the COLOR button or
+          hitting keys <code>-</code> or <code>+</code>
         </p>
       </details>
 
