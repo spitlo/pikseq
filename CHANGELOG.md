@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.5
+
+- Add Help section about stopping [`a3ecba0`](../../commit/a3ecba0918889561f5ce9fdadb7cf93f56ff69d3)
+
 ## v0.1.4
 
 - Put help text in sections, hide all except the first [`bff5d27`](../../commit/bff5d274388dda6ce04a39c1cba2d88c83c0241b)
