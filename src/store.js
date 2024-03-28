@@ -283,8 +283,8 @@ const initAndPlay = () => {
 const togglePlay = () => {
   if (store.playing) {
     // Tone.Draw.cancel()
-    Tone.Transport.clear(transport)
-    // Tone.Transport.cancel(Tone.now())
+    // Tone.Transport.clear(transport)
+    Tone.Transport.cancel(Tone.now())
     Tone.Transport.stop()
     // Tone.Transport.ticks = 0
     // index = 0
