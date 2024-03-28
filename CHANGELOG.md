@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.7
+
+- Add emoticons [`1ea96f0`](../../commit/1ea96f0ee3e164575cc5e19d730b403d2e7b1c45)
+
 ## v0.1.6
 
 - Only disable frame nav buttons if animation is enabled [`1ec3b76`](../../commit/1ec3b767ba75ef9617d736a613197a4f63388b87)
