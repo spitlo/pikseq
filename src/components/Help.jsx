@@ -47,7 +47,8 @@ const Help = () => {
         <p>
           Pick a color by clicking the colored squares in the top toolbar or
           pressing keys <code>1</code>-<code>9</code>. Then start painting! You
-          can only paint by clicking a pixel at a time, sorry :(
+          can only paint by clicking a pixel at a time, sorry{' '}
+          <i class="emoticon sad" />
         </p>
         <p>
           You can also cycle through colors by pressing the COLOR button or
@@ -133,18 +134,33 @@ const Help = () => {
         </p>
         <p>
           For now, do what I do: Save, then reload you browser. This also
-          encourages you to save often, so... you’re welcome!
+          encourages you to save often, so... you’re welcome!{' '}
+          <i class="emoticon nerd" />
         </p>
       </details>
 
       <hr />
+
+      <details>
+        <summary>Credits</summary>
+        <p>
+          Icons from{' '}
+          <a
+            href="https://emoji.serenityos.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            SerenityOS
+          </a>
+        </p>
+      </details>
 
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
         <p class="warning">
           The current composition is saved with version {createdWith}. PIKSEQ is
           running version {version}. Some sounds may not represent what the
-          original composer intended.
+          original composer intended. <i class="emoticon scream" />
         </p>
       </Show>
     </div>
