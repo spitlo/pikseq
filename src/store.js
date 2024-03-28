@@ -1,6 +1,6 @@
 import * as Tone from 'tone'
 import { createEffect } from 'solid-js'
-import { createStore, produce } from 'solid-js/store'
+import { createStore, produce, unwrap } from 'solid-js/store'
 
 import instruments from './instruments'
 import { load, save, stash, storage } from './storage'
@@ -14,31 +14,39 @@ import {
 const BASE_SCALE = ['E', 'F#', 'G#', 'A', 'B', 'C', 'D'] // Aeolian Dominant scale
 const INSTRUMENT_AMOUNT = instruments.length
 const TRACK_LENGTH = 32
+
 const initialnstrument = getRandomInt(0, instruments.length - 1)
 
 let index = 0
+let transport
 
-const tracks = []
-for (let id=0; id < 26; id++) {
-  tracks.push({
+const generateTtracks = () => {
+  const tracks = []
+  for (let id = 0; id < 26; id++) {
+    tracks.push({
       id,
-      instrument: initialnstrument,
       muted: false,
+      // Should we keep this like it is? Or do we want consistent
+      // notes across frames?
       note: getArrayElement(BASE_SCALE),
       ticks: new Array(TRACK_LENGTH).fill(0),
-  })
+    })
+  }
+  return tracks
 }
 
 const [store, setStore] = createStore({
+  animate: false,
   bpm: 85,
   colorScheme: 0,
   createdWith: version,
   currentColor: 1,
+  frame: 0,
+  frames: [generateTtracks()],
   initiated: false,
   playing: false,
   saved: true,
   steps: new Array(TRACK_LENGTH).fill(0),
-  tracks,
 })
 
 const initContext = () => {
@@ -46,9 +54,9 @@ const initContext = () => {
 }
 
 const loop = (time) => {
-  for (let trackId = 0; trackId < store.tracks.length; trackId++) {
+  for (let trackId = 0; trackId < store.frames[store.frame].length; trackId++) {
     let step = index % 32
-    const currentTrack = store.tracks[trackId]
+    const currentTrack = store.frames[store.frame][trackId]
     if (!currentTrack.muted) {
       if (currentTrack.ticks[step]) {
         const instrumentId = currentTrack.ticks[step]
@@ -74,12 +82,31 @@ const loop = (time) => {
     }
 
     Tone.Draw.schedule(() => {
-      const steps = store.steps
       setStore('steps', trackId, step)
     }, time)
   }
 
+  if (store.animate) {
+    if (index % 2 === 0) {
+      let nextFrame = store.frame + 1
+      if (nextFrame > store.frames.length - 1) {
+        nextFrame = 0
+      }
+      setStore('frame', nextFrame)
+    }
+  }
+
   index++
+}
+
+const prevColor = () => {
+  let currentColor = store.currentColor
+  if (currentColor < 2) {
+    currentColor = 9
+  } else {
+    currentColor--
+  }
+  setStore('currentColor', currentColor)
 }
 
 const nextColor = () => {
@@ -94,13 +121,13 @@ const nextColor = () => {
 
 const toggleTick = async (trackId, tickId, color) => {
   setStore(
-    'tracks',
-    (tracks) => tracks.id === trackId,
-    produce((track) => {
-      if (track.ticks[tickId] === color) {
-        track.ticks[tickId] = 0
+    'frames',
+    store.frame,
+    produce((frame) => {
+      if (frame[trackId].ticks[tickId] === color) {
+        frame[trackId].ticks[tickId] = 0
       } else {
-        track.ticks[tickId] = color
+        frame[trackId].ticks[tickId] = color
       }
     })
   )
@@ -108,7 +135,7 @@ const toggleTick = async (trackId, tickId, color) => {
 
 const handleTickClick = (trackId, tickId, color, keys) => {
   // First, pick the color of the clicked tick
-  const baseColor = store.tracks[trackId].ticks[tickId]
+  const baseColor = store.frames[store.frame][trackId].ticks[tickId]
   // Then toggle the clicked tick
   toggleTick(trackId, tickId, color)
 
@@ -126,7 +153,7 @@ const handleTickClick = (trackId, tickId, color, keys) => {
     let counter = 0
     // Loop until we reach a stop on bothe sides
     while (togglePrev || toggleNext) {
-      counter = counter + stepSize
+      counter++
       if (tickId - counter < 0) {
         togglePrev = false
       }
@@ -134,17 +161,23 @@ const handleTickClick = (trackId, tickId, color, keys) => {
         toggleNext = false
       }
       if (togglePrev) {
-        let prevTick = store.tracks[trackId].ticks[tickId - counter]
+        let prevTick =
+          store.frames[store.frame][trackId].ticks[tickId - counter]
         if (prevTick === baseColor) {
-          toggleTick(trackId, tickId - counter, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId, tickId - counter, color)
+          }
         } else {
           togglePrev = false
         }
       }
       if (toggleNext) {
-        let nextTick = store.tracks[trackId].ticks[tickId + counter]
+        let nextTick =
+          store.frames[store.frame][trackId].ticks[tickId + counter]
         if (nextTick === baseColor) {
-          toggleTick(trackId, tickId + counter, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId, tickId + counter, color)
+          }
         } else {
           toggleNext = false
         }
@@ -156,25 +189,31 @@ const handleTickClick = (trackId, tickId, color, keys) => {
     let toggleNext = true
     let counter = 0
     while (togglePrev || toggleNext) {
-      counter = counter + stepSize
+      counter++
       if (trackId - counter < 0) {
         togglePrev = false
       }
-      if (trackId + counter === store.tracks.length) {
+      if (trackId + counter === store.frames[store.frame].length) {
         toggleNext = false
       }
       if (togglePrev) {
-        let prevTick = store.tracks[trackId - counter].ticks[tickId]
+        let prevTick =
+          store.frames[store.frame][trackId - counter].ticks[tickId]
         if (prevTick === baseColor) {
-          toggleTick(trackId - counter, tickId, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId - counter, tickId, color)
+          }
         } else {
           togglePrev = false
         }
       }
       if (toggleNext) {
-        let nextTick = store.tracks[trackId + counter].ticks[tickId]
+        let nextTick =
+          store.frames[store.frame][trackId + counter].ticks[tickId]
         if (nextTick === baseColor) {
-          toggleTick(trackId + counter, tickId, color)
+          if (counter % stepSize === 0) {
+            toggleTick(trackId + counter, tickId, color)
+          }
         } else {
           toggleNext = false
         }
@@ -228,7 +267,7 @@ const saveStore = () => {
 const initAndPlay = () => {
   Tone.start()
   Tone.Transport.bpm.value = store.bpm
-  Tone.Transport.scheduleRepeat(loop, '16n')
+  transport = Tone.Transport.scheduleRepeat(loop, '16n')
   Tone.Transport.start()
 
   setStore(
@@ -241,13 +280,16 @@ const initAndPlay = () => {
 
 const togglePlay = () => {
   if (store.playing) {
+    Tone.Draw.cancel()
     Tone.Transport.stop()
+    Tone.Transport.clear(transport)
     index = 0
     resetSteps()
     setStore('playing', false)
   } else {
     resetSteps()
     if (store.initiated) {
+      transport = Tone.Transport.scheduleRepeat(loop, '16n')
       Tone.Transport.start()
       setStore('playing', true)
     } else {
@@ -264,11 +306,60 @@ const reset = () => {
   location.href = '.'
 }
 
+const prevFrame = () => {
+  setStore('frame', store.frame - 1)
+}
+
+const nextFrame = () => {
+  setStore('frame', store.frame + 1)
+}
+
+const addFrame = () => {
+  // If this is the first added frame, enable animation
+  if (store.frames.length === 1) {
+    setStore('animate', true)
+  }
+
+  const newTrack = generateTtracks()
+  if (store.frames.length < 8) {
+    setStore(
+      produce((store) => {
+        store.frames.push(newTrack)
+        store.frame = store.frame + 1
+      })
+    )
+  }
+}
+
+const dupeFrame = () => {
+  // If this is the first added frame, enable animation
+  if (store.frames.length === 1) {
+    setStore('animate', true)
+  }
+
+  const currentTrack = store.frames[store.frame]
+  // We use unwrap so that we can use structuredClone to make a copy
+  const newTrack = structuredClone(unwrap(currentTrack))
+  if (store.frames.length < 8) {
+    setStore(
+      produce((store) => {
+        store.frames.push(newTrack)
+        store.frame = store.frame + 1
+      })
+    )
+  }
+}
+
 const actions = {
+  addFrame,
+  dupeFrame,
   handleTickClick,
   initAndPlay,
   initContext,
   nextColor,
+  nextFrame,
+  prevColor,
+  prevFrame,
   reset,
   saveStore,
   setBpm,

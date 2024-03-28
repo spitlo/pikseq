@@ -32,6 +32,7 @@ function App() {
   const [SaveModal, toggleSaveModal] = createModal()
 
   createEffect(() => {
+    console.log(store) /* eslint-disable-line */
     const e = kdEvent()
     if (e && e.key) {
       const charCode = e.key.charCodeAt()
@@ -42,12 +43,13 @@ function App() {
       } else if (charCode > 48 && charCode < 58) {
         // Numbers 1-9. Change current color
         setStore('currentColor', Number(e.key))
-      } else if (e.key === 'ArrowUp') {
+      } else if (charCode === 45) {
         // This triggers an infinite loop, investigate
-        // actions.setBpm(store.bpm + 1)
-      } else if (e.key === 'ArrowDown') {
-        // actions.setBpm(store.bpm - 1)
+        // actions.prevColor()
+      } else if (charCode === 43) {
+        // actions.nextColor()
       }
+      // e.preventDefault()
     }
   })
 
@@ -68,12 +70,52 @@ function App() {
                 }}
                 data-tooltip={instruments[index() + 1].name}
                 data-placement="bottom"
-                />
+              />
             )}
           </For>
+          <button
+            class="animation"
+            disabled={store.playing || store.frame === 0}
+            onClick={actions.prevFrame}
+          >
+            {'<'}
+          </button>
+          <span class="animation-indicator">Frame {store.frame + 1}</span>
+          <button
+            class="animation"
+            disabled={store.playing || store.frame === store.frames.length - 1}
+            onClick={actions.nextFrame}
+          >
+            {'>'}
+          </button>
+          <button
+            class="animation"
+            disabled={store.frames.length > 7}
+            onClick={actions.addFrame}
+          >
+            {'+'}
+          </button>
+          <button
+            class="animation"
+            disabled={store.frames.length > 7}
+            onClick={actions.dupeFrame}
+          >
+            {'C'}
+          </button>
+          <label class="animation-animate">
+            <input
+              type="checkbox"
+              disabled={store.frames.length === 1}
+              checked={store.animate}
+              onClick={() => {
+                setStore('animate', !store.animate)
+              }}
+            />{' '}
+            Animate
+          </label>
         </div>
 
-        <For each={store.tracks}>
+        <For each={store.frames[store.frame]}>
           {(track, trackIndex) => {
             const { id, ticks } = track
             return (
@@ -88,10 +130,14 @@ function App() {
                         type="checkbox"
                         checked={tick}
                         onChange={() => {
-                          actions.handleTickClick(track.id, tickIndex(), store.currentColor, kdList())
+                          actions.handleTickClick(
+                            track.id,
+                            tickIndex(),
+                            store.currentColor,
+                            kdList()
+                          )
                           return false
-                        }
-                        }
+                        }}
                         class={`${
                           store.steps[trackIndex()] === tickIndex()
                             ? 'onstep'
@@ -117,9 +163,7 @@ function App() {
           >
             Save
           </button>
-          <button
-            onClick={actions.togglePlay}
-          >
+          <button onClick={actions.togglePlay}>
             {store.playing ? 'Stop' : 'Play'}
           </button>
           <input
@@ -131,15 +175,21 @@ function App() {
               actions.setBpm(e.target.value)
             }}
           />
-          <button onClick={actions.reset} disabled={store.tracks.length === 1}>
-            Reset
+          <button onClick={actions.reset}>Reset</button>
+          <button
+            onClick={actions.nextColor}
+            class={`color-button color-${store.currentColor}`}
+          >
+            Color
           </button>
-          <button onClick={actions.nextColor} class={`color-button color-${store.currentColor}`}>Color</button>
-          <select  value={store.colorScheme} onChange={(e) => {
-            setColorScheme(e.target.value)
-          }}>
+          <select
+            value={store.colorScheme}
+            onChange={(e) => {
+              setColorScheme(e.target.value)
+            }}
+          >
             <For each={colorSchemes}>
-              {(color, index) => (<option value={index()}>{color.name}</option>)}
+              {(color, index) => <option value={index()}>{color.name}</option>}
             </For>
           </select>
         </div>
