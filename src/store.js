@@ -1,5 +1,5 @@
 import * as Tone from 'tone'
-import { createEffect } from 'solid-js'
+import { createEffect, untrack } from 'solid-js'
 import { createStore, produce, unwrap } from 'solid-js/store'
 
 import instruments from './instruments'
@@ -100,7 +100,7 @@ const loop = (time) => {
 }
 
 const prevColor = () => {
-  let currentColor = store.currentColor
+  let currentColor = untrack(() => store.currentColor)
   if (currentColor < 2) {
     currentColor = 9
   } else {
@@ -110,7 +110,7 @@ const prevColor = () => {
 }
 
 const nextColor = () => {
-  let currentColor = store.currentColor
+  let currentColor = untrack(() => store.currentColor)
   if (currentColor > 8) {
     currentColor = 1
   } else {
@@ -283,11 +283,21 @@ const reset = () => {
 }
 
 const prevFrame = () => {
-  setStore('frame', store.frame - 1)
+  let frame = untrack(() => store.frame) - 1
+  const frames = untrack(() => store.frames)
+  if (frame < 0) {
+    frame = frames.length - 1
+  }
+  setStore('frame', frame)
 }
 
 const nextFrame = () => {
-  setStore('frame', store.frame + 1)
+  let frame = untrack(() => store.frame) + 1
+  const frames = untrack(() => store.frames)
+  if (frame > frames.length - 1) {
+    frame = 0
+  }
+  setStore('frame', frame)
 }
 
 const addFrame = () => {

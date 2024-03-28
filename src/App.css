@@ -92,7 +92,7 @@ body {
 }
 
 .container .header button.palette.active {
-  border-color: #693;
+  border: 2px dashed #9bc96d;
 }
 
 .container .header button.animation {
