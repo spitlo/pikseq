@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.4
+
+- Put help text in sections, hide all except the first [`bff5d27`](../../commit/bff5d274388dda6ce04a39c1cba2d88c83c0241b)
+
 ## v0.1.3
 
 - Add button to duplicate current frame. Formatting [`bb6a554`](../../commit/bb6a5541aaedfcf2e63e2695b8d7e7d16d214bce)
