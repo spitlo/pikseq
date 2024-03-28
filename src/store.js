@@ -1,6 +1,6 @@
 import * as Tone from 'tone'
 import { createEffect } from 'solid-js'
-import { createStore, produce } from 'solid-js/store'
+import { createStore, produce, unwrap } from 'solid-js/store'
 
 import instruments from './instruments'
 import { load, save, stash, storage } from './storage'
@@ -21,14 +21,14 @@ let index = 0
 
 const generateTtracks = () => {
   const tracks = []
-  for (let id=0; id < 26; id++) {
+  for (let id = 0; id < 26; id++) {
     tracks.push({
-        id,
-        muted: false,
-        // Should we keep this like it is? Or do we want consistent
-        // notes across frames?
-        note: getArrayElement(BASE_SCALE),
-        ticks: new Array(TRACK_LENGTH).fill(0),
+      id,
+      muted: false,
+      // Should we keep this like it is? Or do we want consistent
+      // notes across frames?
+      note: getArrayElement(BASE_SCALE),
+      ticks: new Array(TRACK_LENGTH).fill(0),
     })
   }
   return tracks
@@ -41,9 +41,7 @@ const [store, setStore] = createStore({
   createdWith: version,
   currentColor: 1,
   frame: 0,
-  frames: [
-    generateTtracks(),
-  ],
+  frames: [generateTtracks()],
   initiated: false,
   playing: false,
   saved: true,
@@ -163,7 +161,8 @@ const handleTickClick = (trackId, tickId, color, keys) => {
         toggleNext = false
       }
       if (togglePrev) {
-        let prevTick = store.frames[store.frame][trackId].ticks[tickId - counter]
+        let prevTick =
+          store.frames[store.frame][trackId].ticks[tickId - counter]
         if (prevTick === baseColor) {
           if (counter % stepSize === 0) {
             toggleTick(trackId, tickId - counter, color)
@@ -173,7 +172,8 @@ const handleTickClick = (trackId, tickId, color, keys) => {
         }
       }
       if (toggleNext) {
-        let nextTick = store.frames[store.frame][trackId].ticks[tickId + counter]
+        let nextTick =
+          store.frames[store.frame][trackId].ticks[tickId + counter]
         if (nextTick === baseColor) {
           if (counter % stepSize === 0) {
             toggleTick(trackId, tickId + counter, color)
@@ -197,7 +197,8 @@ const handleTickClick = (trackId, tickId, color, keys) => {
         toggleNext = false
       }
       if (togglePrev) {
-        let prevTick = store.frames[store.frame][trackId - counter].ticks[tickId]
+        let prevTick =
+          store.frames[store.frame][trackId - counter].ticks[tickId]
         if (prevTick === baseColor) {
           if (counter % stepSize === 0) {
             toggleTick(trackId - counter, tickId, color)
@@ -207,7 +208,8 @@ const handleTickClick = (trackId, tickId, color, keys) => {
         }
       }
       if (toggleNext) {
-        let nextTick = store.frames[store.frame][trackId + counter].ticks[tickId]
+        let nextTick =
+          store.frames[store.frame][trackId + counter].ticks[tickId]
         if (nextTick === baseColor) {
           if (counter % stepSize === 0) {
             toggleTick(trackId + counter, tickId, color)
@@ -293,10 +295,31 @@ const addFrame = () => {
   if (store.frames.length === 1) {
     setStore('animate', true)
   }
+
+  const newTrack = generateTtracks()
   if (store.frames.length < 8) {
     setStore(
       produce((store) => {
-        store.frames.push(generateTtracks())
+        store.frames.push(newTrack)
+        store.frame = store.frame + 1
+      })
+    )
+  }
+}
+
+const dupeFrame = () => {
+  // If this is the first added frame, enable animation
+  if (store.frames.length === 1) {
+    setStore('animate', true)
+  }
+
+  const currentTrack = store.frames[store.frame]
+  // We use unwrap so that we can use structuredClone to make a copy
+  const newTrack = structuredClone(unwrap(currentTrack))
+  if (store.frames.length < 8) {
+    setStore(
+      produce((store) => {
+        store.frames.push(newTrack)
         store.frame = store.frame + 1
       })
     )
@@ -305,6 +328,7 @@ const addFrame = () => {
 
 const actions = {
   addFrame,
+  dupeFrame,
   handleTickClick,
   initAndPlay,
   initContext,

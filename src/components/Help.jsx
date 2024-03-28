@@ -38,20 +38,21 @@ const Help = () => {
   return (
     <div class="help">
       <h1>Help!</h1>
+      <p>PIKSEQ is a mix between a pixel art editor and a sequencer.</p>
       <p>
-        PIKSEQ is a mix between a pixel art editor and a sequencer.
+        Pick a color by clicking the color button or pressing keys{' '}
+        <code>1</code>-<code>9</code>. Then start painting! You can only paint
+        by clicking a pixel at a time, sorry :(
       </p>
       <p>
-        Pick a color by clicking the color button or pressing keys <code>1</code>-<code>9</code>.
-        Then start painting! You can only paint by clicking a pixel at a time, sorry :(
-      </p>
-      <p>
-        To help you, there are some keyboard modifiers. If you press <code>alt</code>/<code>option</code> while
-        painting a pixel, you will get a horizontal line. If you press <code>shift</code> while painting
-        a pixel, you will get a vertical line. Lines extend through all pixels of the same
-        color, so you can put a start and end pixel and the line will cover the area between
-        them. If you press <code>windows</code>/<code>command</code>/<code>meta</code> (depending on your OS) the line will only
-        paint every other pixel.
+        To help you, there are some keyboard modifiers. If you press{' '}
+        <code>alt</code>/<code>option</code> while painting a pixel, you will
+        get a horizontal line. If you press <code>shift</code> while painting a
+        pixel, you will get a vertical line. Lines extend through all pixels of
+        the same color, so you can put a start and end pixel and the line will
+        cover the area between them. If you press <code>windows</code>/
+        <code>command</code>/<code>meta</code> (depending on your OS) the line
+        will only paint every other pixel.
       </p>
       <p>
         Use keys <code>a</code>-<code>y</code> to mute tracks.
@@ -62,19 +63,21 @@ const Help = () => {
         to share it.
       </p>
       <p>
-        If you get no sound when you press PLAY, try hitting SAVE and reloading your browser.
+        If you get no sound when you press PLAY, try hitting SAVE and reloading
+        your browser.
       </p>
       <p>
-        If you want to, you can create multiple frames, which you can then animate between.
-        Get started by clicking the <code>+</code> button on the Frames toolbar next to the color buttons.
-        You could also use frames for song parts: Disable animation by clicking the checkbox and
-        switch between frames manually by using the arrow buttons.
+        If you want to, you can create multiple frames, which you can then
+        animate between. Get started by clicking the <code>+</code> button on
+        the Frames toolbar next to the color buttons. You could also use frames
+        for song parts: Disable animation by clicking the checkbox and switch
+        between frames manually by using the arrow buttons.
       </p>
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
         <p class="warning">
-          The current composition is saved with version {createdWith}. PIKSEQ
-          is running version {version}. Some sounds may not represent what the
+          The current composition is saved with version {createdWith}. PIKSEQ is
+          running version {version}. Some sounds may not represent what the
           original composer intended.
         </p>
       </Show>

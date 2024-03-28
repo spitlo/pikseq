@@ -4,13 +4,13 @@
   --color-3: #d93934;
   --color-4: #808000;
   --color-5: #ed872d;
-  --color-6: #556CBC;
-  --color-7: #10EDF5;
-  --color-8: #F99FD4;
+  --color-6: #556cbc;
+  --color-7: #10edf5;
+  --color-8: #f99fd4;
   --color-9: #6b6361;
 }
 
-[data-theme=dark] {
+[data-theme='dark'] {
   --pico-background-color: #2f414a;
 }
 

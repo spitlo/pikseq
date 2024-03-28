@@ -32,7 +32,7 @@ function App() {
   const [SaveModal, toggleSaveModal] = createModal()
 
   createEffect(() => {
-    console.log(store); /* eslint-disable-line */
+    console.log(store) /* eslint-disable-line */
     const e = kdEvent()
     if (e && e.key) {
       const charCode = e.key.charCodeAt()
@@ -70,17 +70,48 @@ function App() {
                 }}
                 data-tooltip={instruments[index() + 1].name}
                 data-placement="bottom"
-                />
+              />
             )}
           </For>
-          <button class="animation" disabled={store.playing || store.frame === 0} onClick={actions.prevFrame}>{'<'}</button>
+          <button
+            class="animation"
+            disabled={store.playing || store.frame === 0}
+            onClick={actions.prevFrame}
+          >
+            {'<'}
+          </button>
           <span class="animation-indicator">Frame {store.frame + 1}</span>
-          <button class="animation" disabled={store.playing || store.frame === store.frames.length - 1} onClick={actions.nextFrame}>{'>'}</button>
-          <button class="animation" disabled={store.frames.length > 7} onClick={actions.addFrame}>{'+'}</button>
+          <button
+            class="animation"
+            disabled={store.playing || store.frame === store.frames.length - 1}
+            onClick={actions.nextFrame}
+          >
+            {'>'}
+          </button>
+          <button
+            class="animation"
+            disabled={store.frames.length > 7}
+            onClick={actions.addFrame}
+          >
+            {'+'}
+          </button>
+          <button
+            class="animation"
+            disabled={store.frames.length > 7}
+            onClick={actions.dupeFrame}
+          >
+            {'C'}
+          </button>
           <label class="animation-animate">
-            <input type="checkbox" disabled={store.frames.length === 1} checked={store.animate} onClick={() => {
-              setStore('animate', !store.animate)
-            }} /> Animate
+            <input
+              type="checkbox"
+              disabled={store.frames.length === 1}
+              checked={store.animate}
+              onClick={() => {
+                setStore('animate', !store.animate)
+              }}
+            />{' '}
+            Animate
           </label>
         </div>
 
@@ -99,10 +130,14 @@ function App() {
                         type="checkbox"
                         checked={tick}
                         onChange={() => {
-                          actions.handleTickClick(track.id, tickIndex(), store.currentColor, kdList())
+                          actions.handleTickClick(
+                            track.id,
+                            tickIndex(),
+                            store.currentColor,
+                            kdList()
+                          )
                           return false
-                        }
-                        }
+                        }}
                         class={`${
                           store.steps[trackIndex()] === tickIndex()
                             ? 'onstep'
@@ -128,10 +163,7 @@ function App() {
           >
             Save
           </button>
-          <button
-            onClick={actions.initAndPlay}
-            disabled={store.playing}
-          >
+          <button onClick={actions.initAndPlay} disabled={store.playing}>
             Play
           </button>
           <input
@@ -143,15 +175,21 @@ function App() {
               actions.setBpm(e.target.value)
             }}
           />
-          <button onClick={actions.reset}>
-            Reset
+          <button onClick={actions.reset}>Reset</button>
+          <button
+            onClick={actions.nextColor}
+            class={`color-button color-${store.currentColor}`}
+          >
+            Color
           </button>
-          <button onClick={actions.nextColor} class={`color-button color-${store.currentColor}`}>Color</button>
-          <select  value={store.colorScheme} onChange={(e) => {
-            setColorScheme(e.target.value)
-          }}>
+          <select
+            value={store.colorScheme}
+            onChange={(e) => {
+              setColorScheme(e.target.value)
+            }}
+          >
             <For each={colorSchemes}>
-              {(color, index) => (<option value={index()}>{color.name}</option>)}
+              {(color, index) => <option value={index()}>{color.name}</option>}
             </For>
           </select>
         </div>

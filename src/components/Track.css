@@ -23,7 +23,7 @@
   opacity: 0.3;
 }
 .track-info:has(+ .track.muted):after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -38,7 +38,7 @@
   height: 1.2em;
   margin-inline-end: 4px;
   border-radius: 0;
-/*  border-color: #2f414a;*/
+  /*  border-color: #2f414a;*/
 }
 
 .track input[type='checkbox']:focus {
