@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.3
+
+- Add button to duplicate current frame. Formatting [`bb6a554`](../../commit/bb6a5541aaedfcf2e63e2695b8d7e7d16d214bce)
+
 ## v0.1.2
 
 - Add help text about animation [`7c7bebc`](../../commit/7c7bebce4015571283e0201bbecdf21f00e365d9)
