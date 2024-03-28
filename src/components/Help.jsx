@@ -120,6 +120,21 @@ const Help = () => {
 
       <hr />
 
+      <details>
+        <summary>How do I stop this thing?!?</summary>
+        <p>
+          I’m trying to get Tone.js’ start/stop mechanism functioning reliably,
+          but I’ve not had any success so far. Until I get it to work reliably
+          and consistently, I don’t want to put a STOP button in the UI at all.
+        </p>
+        <p>
+          For now, do what I do: Save, then reload you browser. This also
+          encourages you to save often, so... you’re welcome!
+        </p>
+      </details>
+
+      <hr />
+
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
         <p class="warning">
