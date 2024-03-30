@@ -337,8 +337,19 @@ const dupeFrame = () => {
   }
 }
 
+const deleteFrame = () => {
+  const currentFrame = store.frame
+  prevFrame()
+  setStore(
+    produce((store) => {
+      store.frames.splice(currentFrame, 1)
+    })
+  )
+}
+
 const actions = {
   addFrame,
+  deleteFrame,
   dupeFrame,
   handleTickClick,
   initAndPlay,

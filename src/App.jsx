@@ -112,6 +112,13 @@ function App() {
           >
             {'C'}
           </button>
+          <button
+            class="animation"
+            disabled={store.frames.length === 1}
+            onClick={actions.deleteFrame}
+          >
+            {'X'}
+          </button>
           <label class="animation-animate">
             <input
               type="checkbox"
