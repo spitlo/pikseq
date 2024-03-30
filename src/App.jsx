@@ -68,7 +68,7 @@ function App() {
       <div class="container">
         <div></div>
         <div class="header">
-          <For each={colorSchemes[store.colorScheme].colors}>
+          <For each={colorSchemes[store.colorScheme || 0].colors}>
             {(color, index) => (
               <button
                 class={`palette color-${index() + 1} ${index() + 1 === store.currentColor ? ' active' : ''}`}

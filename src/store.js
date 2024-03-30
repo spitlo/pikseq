@@ -119,7 +119,7 @@ const nextColor = () => {
   setStore('currentColor', currentColor)
 }
 
-const toggleTick = async (trackId, tickId, color) => {
+const toggleTick = (trackId, tickId, color) => {
   setStore(
     'frames',
     store.frame,
@@ -245,8 +245,8 @@ const setBpm = (newBpm) => {
   )
 }
 
-const saveStore = async () => {
-  await Tone.Transport.stop()
+const saveStore = () => {
+  Tone.Transport.stop()
   const steps = new Array(store.steps.length).fill(0)
   setStore(
     produce((store) => {
@@ -255,17 +255,18 @@ const saveStore = async () => {
       store.saved = true
       store.steps = steps
       store.createdWith = version
+      store.frame = 0
     })
   )
   stash(store)
   save()
 }
 
-const initAndPlay = async () => {
-  await Tone.start()
+const initAndPlay = () => {
+  Tone.start()
   Tone.Transport.bpm.value = store.bpm
   Tone.Transport.scheduleRepeat(loop, '16n')
-  await Tone.Transport.start()
+  Tone.Transport.start()
 
   setStore(
     produce((store) => {
@@ -313,6 +314,7 @@ const addFrame = () => {
       produce((store) => {
         store.frames.push(newTrack)
         store.frame = store.frame + 1
+        store.saved = false
       })
     )
   }
@@ -332,6 +334,7 @@ const dupeFrame = () => {
       produce((store) => {
         store.frames.push(newTrack)
         store.frame = store.frame + 1
+        store.saved = false
       })
     )
   }
@@ -343,6 +346,7 @@ const deleteFrame = () => {
   setStore(
     produce((store) => {
       store.frames.splice(currentFrame, 1)
+      store.saved = false
     })
   )
 }
