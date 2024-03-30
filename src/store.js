@@ -226,10 +226,12 @@ const handleTickClick = (trackId, tickId, color, keys) => {
 
 const toggleMute = (trackId) => {
   setStore(
-    'tracks',
-    (tracks) => tracks.id === trackId,
-    produce((track) => {
-      track.muted = !track.muted
+    produce((store) => {
+      const tracks = store.frames[store.frame]
+      const track = tracks.filter((track) => track.id === trackId)[0]
+      if (track) {
+        track.muted = !track.muted
+      }
     })
   )
   setStore('saved', false)
