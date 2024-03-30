@@ -2,6 +2,14 @@
 
 This changelog is automatically generated.
 
+## v0.1.10
+
+- Set frame to 0 on save. Make store dirty on frame changes. Cleanup [`1d3d721`](../../commit/1d3d721418aca3ccf4f3ddb5e5935764b97c5ff6)
+- Add delete frame button [`a438189`](../../commit/a4381896eac6747e6e61154aade6045ef15ec60b)
+- Add docs to .prettierignore [`2debb08`](../../commit/2debb0808e10ccf631f0c672ec345961d58ad73a)
+- Add .ignore file for ag [`8f511e0`](../../commit/8f511e0a9f60a2ffec6fbe6b30c08790810a4590)
+- More credits [`82cd7b5`](../../commit/82cd7b518997d1cd608fd53821b5a492bbe9ad63)
+
 ## v0.1.9
 
 - Add help text about palettes. Add todo item [`745d7e6`](../../commit/745d7e65c289979addc82fefbc4df7b4a71330d2)
