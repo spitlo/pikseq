@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.2.0
+
+- Fix muting for now (implementation may change) [`b30c4b3`](../../commit/b30c4b333d2fcc06498075d4c368d8899734d8ae)
+- Compress hash on save [`24968d0`](../../commit/24968d045561b5f62040f598e39a660ee99e61a2)
+
 ## v0.1.10
 
 - Set frame to 0 on save. Make store dirty on frame changes. Cleanup [`1d3d721`](../../commit/1d3d721418aca3ccf4f3ddb5e5935764b97c5ff6)
