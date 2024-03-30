@@ -1,11 +1,21 @@
+import {
+  compressToEncodedURIComponent,
+  decompressFromEncodedURIComponent,
+} from 'lz-string'
 import { debug } from './utils'
 
 let storage = {}
 
 const load = () => {
   if (location.hash) {
-    const hash = location.hash.slice(1)
-    const escaped = atob(hash)
+    let hash = location.hash.slice(1)
+    let escaped
+    if (hash.startsWith('LZ:')) {
+      hash = hash.substring(3)
+      escaped = decompressFromEncodedURIComponent(hash)
+    } else {
+      escaped = atob(hash)
+    }
     const unescaped = unescape(escaped)
     const tempStorage = JSON.parse(unescaped)
     if (tempStorage.tracks) {
@@ -22,8 +32,8 @@ const load = () => {
 const save = () => {
   const stringified = JSON.stringify(storage)
   const escaped = escape(stringified)
-  const hash = btoa(escaped)
-  location.hash = hash
+  const hash = compressToEncodedURIComponent(escaped)
+  location.hash = 'LZ:' + hash
 }
 
 const stash = (values) => {
