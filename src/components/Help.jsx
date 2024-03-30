@@ -51,9 +51,13 @@ const Help = () => {
           <i class="emoticon sad" />
         </p>
         <p>
-          But to help you paint faster, there are some keyboard modifiers. If
-          you press <code>alt</code>/<code>option</code> while painting a pixel,
-          you will get a horizontal line. If you press <code>shift</code> while
+          If you don’t enjoy the palette, you can pick another one in the
+          dropdown next to the COLOR button.
+        </p>
+        <p>
+          To help you paint faster, there are some keyboard modifiers. If you
+          press <code>alt</code>/<code>option</code> while painting a pixel, you
+          will get a horizontal line. If you press <code>shift</code> while
           painting a pixel, you will get a vertical line. Lines extend through
           all pixels of the same color, so you can put a start and end pixel and
           the line will cover the area between them. If you hold down
