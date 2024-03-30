@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.1.9
+
+- Add help text about palettes. Add todo item [`745d7e6`](../../commit/745d7e65c289979addc82fefbc4df7b4a71330d2)
+- Tick one todo item, add one more [`bf65b50`](../../commit/bf65b50d38cd77d9361ac5a9a32483595bfe41fc)
+
 ## v0.1.8
 
 - Update version on save. Improve help text [`f9c0f0f`](../../commit/f9c0f0f185fc7e6f171bd514678bd669d956bf6a)
