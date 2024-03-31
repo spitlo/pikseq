@@ -32,14 +32,15 @@ function App() {
   const [SaveModal, toggleSaveModal] = createModal()
 
   createEffect(() => {
-    // console.log(store) /* eslint-disable-line */
     const e = kdEvent()
-    if (e && e.key) {
+    // Avoid shiftKey, might bev needed on some keyboards?
+    if (e && e.key && !e.ctrlKey && !e.metaKey && !e.altKey) {
       const charCode = e.key.charCodeAt()
       if (charCode > 96 && charCode < 123) {
         // Letters a-z
         const trackId = charCode - 97
         actions.toggleMute(trackId)
+        // e.preventDefault()
       } else if (charCode > 48 && charCode < 58) {
         // Numbers 1-9. Change current color
         setStore('currentColor', Number(e.key))
@@ -56,7 +57,6 @@ function App() {
         // .
         actions.nextFrame()
       }
-      e.preventDefault()
     }
   })
 
