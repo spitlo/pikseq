@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.2.1
+
+- Better muting [`e503927`](../../commit/e503927c81a3c17ef554dc30c475eac69bf65c8b)
+
 ## v0.2.0
 
 - Fix muting for now (implementation may change) [`b30c4b3`](../../commit/b30c4b333d2fcc06498075d4c368d8899734d8ae)
