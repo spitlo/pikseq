@@ -42,7 +42,7 @@ const Help = () => {
         PIKSEQ is a <del>stupid</del> fun mix between a pixel art editor and a
         sequencer. It also does animation.
       </p>
-      <details open>
+      <details>
         <summary>Painting</summary>
         <p>
           Pick a color by clicking the colored squares in the top toolbar or
