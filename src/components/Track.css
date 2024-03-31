@@ -38,7 +38,6 @@
   height: 1.2em;
   margin-inline-end: 4px;
   border-radius: 0;
-  /*  border-color: #2f414a;*/
 }
 
 .track input[type='checkbox']:focus {
@@ -47,6 +46,11 @@
 
 .track input[type='checkbox'].onstep {
   border-color: #ffa5005d;
+}
+
+/* Mark every eigth (unticked) tick för easier sequencing */
+input[type='checkbox']:nth-of-type(8n + 1).color-0 {
+  background-color: #233239;
 }
 
 .track-letter {
