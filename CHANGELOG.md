@@ -2,6 +2,13 @@
 
 This changelog is automatically generated.
 
+## v0.2.2
+
+- Start with all help sections closed [`1d97d93`](../../commit/1d97d93d06cc6d92f48d8931583fc47142948334)
+- Mark every eigth more subtly [`3a2d55a`](../../commit/3a2d55ad407bdac56e31e6b05664f420a603565b)
+- Mark every eigth (unticked) tick för easier sequencing [`6255748`](../../commit/62557484946b76cdbb1d7fbe8d3801d4d426f4c5)
+- Remove stray space [`7e4a7c7`](../../commit/7e4a7c7c542cdbdbc19a4b3b3ab8bbd5e459238f)
+
 ## v0.2.1
 
 - Better muting [`e503927`](../../commit/e503927c81a3c17ef554dc30c475eac69bf65c8b)
