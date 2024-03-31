@@ -42,6 +42,9 @@ const Help = () => {
         PIKSEQ is a <del>stupid</del> fun mix between a pixel art editor and a
         sequencer. It also does animation.
       </p>
+
+      <hr />
+
       <details>
         <summary>Painting</summary>
         <p>
@@ -98,8 +101,12 @@ const Help = () => {
         </p>
         <p>
           For convenience, you can press <code>C</code> instead, to clone the
-          current frame into the next frame. This might help if only parts of
-          your frame is animated.
+          current frame into a new frame. This might help if only parts of your
+          frame is animated. NOTE: The new frame is always placed as the last
+          frame, no matter what frame you copy.
+        </p>
+        <p>
+          To delete the current frame, press the <code>X</code> button.
         </p>
         <p>
           You could also use frames for song parts: Disable animation by
@@ -108,7 +115,8 @@ const Help = () => {
         </p>
         <p>
           When using frames, be aware that the note for a specific track changes
-          per frame, to keep everything fun and random.
+          per frame, to keep everything fun and random. Track mutes are also per
+          frame.
         </p>
       </details>
 
@@ -197,7 +205,19 @@ const Help = () => {
             Solid
           </a>
         </p>
+        <p>
+          URL Compression by{' '}
+          <a
+            href="https://github.com/pieroxy/lz-string"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            lz-string
+          </a>
+        </p>
       </details>
+
+      <hr />
 
       <p>Version: {version}</p>
       <Show when={showVersionWarning()}>
