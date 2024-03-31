@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.2.3
+
+- Improve help text [`99d1a91`](../../commit/99d1a91d07f1caefcfaf3232989be35d996d0fe4)
+
 ## v0.2.2
 
 - Start with all help sections closed [`1d97d93`](../../commit/1d97d93d06cc6d92f48d8931583fc47142948334)
