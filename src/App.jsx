@@ -127,7 +127,7 @@ function App() {
               onClick={() => {
                 setStore('animate', !store.animate)
               }}
-            />{' '}
+            />
             Animate
           </label>
         </div>
