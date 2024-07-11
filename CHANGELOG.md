@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.2.6
+
+- Sliiiiightly improve responsiveness [`dd832e4`](../../commit/dd832e415a0663f13a630bdd8f8fbf78da974db9)
+
 ## v0.2.5
 
 - Align frame indicator better [`37f0fb6`](../../commit/37f0fb6d2f37c16676204601fd6f81b205744aee)
