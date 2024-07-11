@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.2.4
+
+- Fix button alignment, add color numbers to color buttons. Spelling [`ef038bc`](../../commit/ef038bcd8a638763a0f98fa4bd194141464a3363)
+
 ## v0.2.3
 
 - Improve help text [`99d1a91`](../../commit/99d1a91d07f1caefcfaf3232989be35d996d0fe4)
