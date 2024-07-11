@@ -77,7 +77,9 @@ function App() {
                 }}
                 data-tooltip={instruments[index() + 1].name}
                 data-placement="bottom"
-              />
+              >
+                {index() + 1}
+              </button>
             )}
           </For>
           <button

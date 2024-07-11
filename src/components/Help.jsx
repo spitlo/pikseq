@@ -100,18 +100,18 @@ const Help = () => {
           the Frames toolbar next to the color buttons.
         </p>
         <p>
-          For convenience, you can press <code>C</code> instead, to clone the
+          For convenience, you can click <code>C</code> instead, to clone the
           current frame into a new frame. This might help if only parts of your
           frame is animated. NOTE: The new frame is always placed as the last
           frame, no matter what frame you copy.
         </p>
         <p>
-          To delete the current frame, press the <code>X</code> button.
+          To delete the current frame, click the <code>X</code> button.
         </p>
         <p>
           You could also use frames for song parts: Disable animation by
           clicking the checkbox and switch between frames manually by using the
-          arrow buttons och hitting keys <code>,</code> or <code>.</code>.
+          arrow buttons or hitting keys <code>,</code> or <code>.</code>.
         </p>
         <p>
           When using frames, be aware that the note for a specific track changes
@@ -130,7 +130,7 @@ const Help = () => {
           address bar to share it.
         </p>
         <p>
-          If you don’t get any sound when you press PLAY, try hitting SAVE and
+          If you don’t get any sound when you click PLAY, try hitting SAVE and
           reloading your browser.
         </p>
       </details>

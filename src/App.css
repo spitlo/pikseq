@@ -31,6 +31,7 @@ body {
 .color-2 {
   background-color: var(--color-2);
   border-color: var(--color-2);
+  color: var(--color-1); /* Hackeroni, but works for most palettes */
 }
 .color-3 {
   background-color: var(--color-3);
@@ -97,14 +98,12 @@ body {
 
 .container .header button.animation {
   margin-left: 0.8rem;
-  vertical-align: bottom;
 }
 
 .animation-indicator {
   font-family: ConsoleMono;
   display: inline-block;
   margin-left: 0.8rem;
-  vertical-align: middle;
   font-size: 43px;
   text-transform: uppercase;
 }
