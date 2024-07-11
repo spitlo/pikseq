@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.2.5
+
+- Align frame indicator better [`37f0fb6`](../../commit/37f0fb6d2f37c16676204601fd6f81b205744aee)
+
 ## v0.2.4
 
 - Fix button alignment, add color numbers to color buttons. Spelling [`ef038bc`](../../commit/ef038bcd8a638763a0f98fa4bd194141464a3363)
