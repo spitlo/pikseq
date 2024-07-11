@@ -82,6 +82,7 @@ function App() {
               </button>
             )}
           </For>
+          <div class="space-or-break" />
           <button
             class="animation"
             disabled={(store.playing && store.animate) || store.frame === 0}

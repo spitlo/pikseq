@@ -72,9 +72,23 @@ body {
   align-items: stretch;
 }
 
+.space-or-break {
+  display: inline-block;
+  margin-left: 0.8rem;
+}
+
 @media (min-width: 1024px) {
   .container {
     max-width: 1010px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .container {
+    max-width: 740px;
+  }
+  .space-or-break {
+    display: block;
   }
 }
 
@@ -97,13 +111,13 @@ body {
 }
 
 .container .header button.animation {
-  margin-left: 0.8rem;
+  margin-right: 0.8rem;
 }
 
 .animation-indicator {
   font-family: ConsoleMono;
   display: inline-block;
-  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   font-size: 43px;
   text-transform: uppercase;
   vertical-align: text-bottom;
@@ -111,7 +125,7 @@ body {
 
 .animation-animate {
   display: inline-block;
-  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   vertical-align: bottom;
 }
 

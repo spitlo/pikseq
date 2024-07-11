@@ -62,3 +62,16 @@ input[type='checkbox']:nth-of-type(8n + 1).color-0 {
 .track:hover .track-letter {
   background-color: #3f545ee0;
 }
+
+@media (max-width: 1023px) {
+  .track input[type='checkbox'] {
+    width: 2.1em;
+    height: 2.1em;
+    margin-inline-end: 6px;
+    margin-bottom: 6px;
+    border-radius: 0;
+  }
+  .track-letter {
+    display: none;
+  }
+}
