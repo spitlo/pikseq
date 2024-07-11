@@ -106,6 +106,7 @@ body {
   margin-left: 0.8rem;
   font-size: 43px;
   text-transform: uppercase;
+  vertical-align: text-bottom;
 }
 
 .animation-animate {
