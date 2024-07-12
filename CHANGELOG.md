@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.2.7
+
+- Add link to Solid Primitives [`f3c567a`](../../commit/f3c567ac6365028cc6dca66e719f5463f116af2b)
+
 ## v0.2.6
 
 - Sliiiiightly improve responsiveness [`dd832e4`](../../commit/dd832e415a0663f13a630bdd8f8fbf78da974db9)
