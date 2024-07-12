@@ -203,6 +203,14 @@ const Help = () => {
             rel="noopener noreferrer"
           >
             Solid
+          </a>{' '}
+          and{' '}
+          <a
+            href="https://primitives.solidjs.community/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solid Primitives
           </a>
         </p>
         <p>
