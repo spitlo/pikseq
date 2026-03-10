@@ -13,6 +13,7 @@ PIKSEQ is some sort of sibling to [Space](https://spitlo.com/space/) and [/'siː
 ## To do
 
 - [ ] Styling
+- [ ] Improve painting/enable continuous painting?
 - [ ] Use `history.pushState()` for start/stop/undo?
 - [ ] How about uploading images and converting them to pixels?
 - [x] Create multiple frames and animate the image?
